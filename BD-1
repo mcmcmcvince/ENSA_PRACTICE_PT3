@@ -1,0 +1,47 @@
+BD-1>ena
+BD-1#conf term
+Enter configuration commands, one per line.  End with CNTL/Z.
+BD-1(config)#router ospf 10
+BD-1(config-router)#exit
+BD-1(config)#int s0/1/0
+BD-1(config-if)#ip ospf 10 area 0
+BD-1(config-if)#int g0/0/0
+BD-1(config-if)#ip ospf 10 area 0
+BD-1(config-if)#exit
+BD-1(config)#end
+BD-1#
+BD-1>ena
+BD-1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+BD-1(config)#router ospf 10
+BD-1(config-router)#router-id 9.9.9.9
+BD-1(config-router)#exit
+BD-1(config)#
+BD-1(config)#int g0/0/0
+BD-1(config-if)#ip ospf priority 255
+BD-1(config-if)#
+BD-1(config-if)#exit
+BD-1(config)#ip route 0.0.0.0 0.0.0.0 s0/1/1
+%Default route without gateway, if not a point-to-point interface, may impact performance
+BD-1(config)#router ospf 10
+BD-1(config-router)#default-information originate
+BD-1(config-router)#exit
+BD-1(config)#int s0/1/0
+BD-1(config-if)#ip ospf hello-interval 20
+BD-1(config-if)#ip ospf dead-interval 80
+BD-1(config-if)#
+BD-1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+BD-1(config)#router ospf 10
+BD-1(config-router)#auto-cost reference-bandwith 10000
+                                              ^
+% Invalid input detected at '^' marker.
+	
+BD-1(config-router)#auto-cost reference-bandwidth 10000
+% OSPF: Reference bandwidth is changed.
+        Please ensure reference bandwidth is consistent across all routers.
+BD-1(config-router)#
+BD-1(config)#router ospf 10
+BD-1(config-router)#passive-interface s0/1/1
+BD-1(config-router)#exit
+BD-1(config)#
