@@ -1,0 +1,23 @@
+PP-1(config)#router ospf 10
+PP-1(config-router)#network 10.10.0.248 0.0.0.3 area 0
+PP-1(config-router)#network 10.10.0.236 0.0.0.3 area 0
+PP-1(config-router)#
+13:11:38: %OSPF-5-ADJCHG: Process 10, Nbr 192.0.2.113 on Serial0/2/0 from LOADING to FULL, Loading Done
+
+PP-1(config-router)#network 10.10.0.240 0.0.0.3 area 0
+PP-1(config-router)#exit
+PP-1(config)#
+PP-1>ena
+PP-1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+PP-1(config)#int s0/2/0
+PP-1(config-if)#ip ospf hello-interval 20
+PP-1(config-if)#ip ospf dead-interval 80
+PP-1(config-if)#exit
+PP-1(config)#
+13:27:11: %OSPF-5-ADJCHG: Process 10, Nbr 9.9.9.9 on Serial0/2/0 from LOADING to FULL, Loading Done
+PP-1(config)#
+PP-1(config)#int s0/1/1
+PP-1(config-if)#ip ospf cost 50
+PP-1(config-if)#exit
+PP-1(config)#

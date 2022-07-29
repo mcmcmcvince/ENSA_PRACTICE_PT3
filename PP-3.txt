@@ -1,0 +1,22 @@
+PP-3>en
+PP-3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+PP-3(config)#do show ip route con
+ C   10.10.0.244/30  is directly connected, Serial0/1/1
+ C   10.10.0.248/30  is directly connected, Serial0/1/0
+ C   192.168.44.0/24  is directly connected, GigabitEthernet0/0/0
+ C   192.168.55.0/24  is directly connected, GigabitEthernet0/0/1
+
+PP-3(config)#router ospf 10
+PP-3(config-router)#network  10.10.0.244 0.0.0.3 area 0
+PP-3(config-router)#network  10.10.0.248 0.0.0.3 area 0
+13:16:27: %OSPF-5-ADJCHG: Process 10, Nbr 192.168.33.1 on Serial0/1/1 from LOADING to FULL, Loading Done
+
+PP-3(config-router)#network  10.10.0.248 0.0.0.3 area 0
+PP-3(config-router)#
+13:16:31: %OSPF-5-ADJCHG: Process 10, Nbr 10.10.0.249 on Serial0/1/0 from LOADING to FULL, Loading Done
+
+PP-3(config-router)#network 192.168.44.0 0.0.0.255 area 0
+PP-3(config-router)#network 192.168.55.0 0.0.0.255 area 0
+PP-3(config-router)#exit
+PP-3(config)#

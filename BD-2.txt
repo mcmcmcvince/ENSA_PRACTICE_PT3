@@ -1,0 +1,20 @@
+BD-2>ena
+BD-2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+BD-2(config)#router ospf 10
+BD-2(config-router)#exit
+BD-2(config)#int g0/0/0
+BD-2(config-if)#ip ospf 10 area 0
+BD-2(config-if)#int g0/0/1
+BD-2(config-if)#ip ospf 10 area 0
+BD-2(config-if)#exit
+BD-2(config)#
+BD-2>ena
+BD-2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+BD-2(config)#router ospf 10
+BD-2(config-router)#router-id 8.8.8.8
+BD-2(config-router)#exi
+03:37:55: %OSPF-5-ADJCHG: Process 10, Nbr 9.9.9.9 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
+BD-2(config-router)#exit 
+BD-2(config)#
